@@ -5,8 +5,9 @@ import { colors, Command } from "./deps.ts";
 import {
   getEps,
   getSeries,
-  radomFromArray,
+  randomFromArray,
   selectMovieOrSeries,
+  startVideo,
 } from "./utils/mod.ts";
 
 function initCommand() {
@@ -25,14 +26,10 @@ export async function main(seriesName?: string) {
   );
 
   const eps = getEps(selectedRetrieveInfo);
-  const randomEp = radomFromArray(eps);
+  const randomEp = randomFromArray(eps);
 
   console.log(`\nStarting ${colors.blue(randomEp.name)}.\n`);
-  const process = Deno.run({
-    cmd: ["vlc", randomEp.path],
-    stdout: "null",
-  });
-  await process.status();
+  await startVideo(randomEp.path);
 }
 
 if (import.meta.main) {

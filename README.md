@@ -3,7 +3,8 @@
 ## Features
 
 - **Rename** and move downloaded movies and series to match my movies system.
-- Start a **random episode** from a selected series.
+- Start a **random episode** from a _selected series_.
+- Start a **random episode** from a _sitcom_.
 
 ---
 
@@ -25,6 +26,14 @@ Then provide one of an action (if it wasn't provided you'll be prompt to select 
 
   ```bash
   deno run --allow-read --allow-write --allow-env --unstable mod.ts random-ep the office
+  ```
+
+- `random-sitcom` to select a random ep from any sitcom provided in `config.ts` file.
+
+  **eg.**
+
+  ```bash
+  deno run --allow-read --allow-write --allow-env --unstable mod.ts random-sitcom
   ```
 
 - `rename-downloaded` to rename all movies from the download folder and move them to the movies root dir.
@@ -82,6 +91,17 @@ chomod +x random_ep.ts
 # or
 
 deno run --allow-read --allow-write --allow-env --unstable random_ep.ts how i met your
+```
+
+#### Random Episode From Sitcom
+
+```bash
+deno run --allow-read --allow-write --allow-env --unstable random_sitcom.ts
+
+# or
+
+chomod +x random_sitcom.ts
+./random_sitcom.ts
 ```
 
 ---
