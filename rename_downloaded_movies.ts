@@ -26,7 +26,7 @@ function initCommand() {
     .option(
       "-m, --move-to-movies [move-to-movies:boolean]",
       "Should move to the root of the movies folder or not.",
-      { default: false },
+      { default: true },
     )
     .option(
       "-t, --test [interactive:boolean]",
@@ -36,7 +36,7 @@ function initCommand() {
     .parse(Deno.args);
 }
 
-async function main({
+export async function main({
   interactive: isInteractive,
   moveToMovies: shouldMoveToMoviesRoot,
   test: isTest,

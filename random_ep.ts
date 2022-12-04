@@ -18,7 +18,7 @@ function initCommand() {
     .parse(Deno.args);
 }
 
-async function main(seriesName?: string) {
+export async function main(seriesName?: string) {
   const selectedRetrieveInfo = await selectMovieOrSeries(
     getSeries(),
     seriesName,
