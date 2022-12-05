@@ -16,7 +16,7 @@ import type { WatchingState } from "../types/mod.ts";
 export interface MoveInfo {
   src: string;
   finalFolderName: string;
-  dist: string;
+  dest: string;
 }
 
 interface OptionalInfoForParse {
@@ -96,13 +96,13 @@ export async function parseDownloadFolderInfo(
     isTest = false,
   } = {},
 ): Promise<MoveInfo | undefined> {
-  const distDir = shouldMoveToMoviesRoot ? moviesRoot : root;
+  const destDir = shouldMoveToMoviesRoot ? moviesRoot : root;
 
   if (shouldMoveToMoviesRoot && downloadFolderName.match(MOVIES_FOLDER_REGEX)) {
     return {
       src: path.join(root, downloadFolderName),
       finalFolderName: downloadFolderName,
-      dist: path.join(moviesRoot, downloadFolderName),
+      dest: path.join(moviesRoot, downloadFolderName),
     };
   }
 
@@ -146,7 +146,7 @@ export async function parseDownloadFolderInfo(
     return {
       src: path.join(root, dir),
       finalFolderName: final,
-      dist: path.join(distDir, final),
+      dest: path.join(destDir, final),
     };
   }
 }

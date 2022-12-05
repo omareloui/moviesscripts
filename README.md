@@ -64,7 +64,7 @@ chomod +x rename_downloaded_movies.ts
 - `-r`, `--root` define the root folder for the movies. (Default: "/home/omareloui/Downloads").
 - `-i`, `--interactive` should be interactive or not. (Default: false).
 - `-m`, `--move-to-movies` should move the downloaded movie(s)/series to the movies root folder (Default: true).
-- `-t`, `--test` should logout the dist only without actually moving the folders.  (Default: false.)
+- `-t`, `--test` should logout the dest only without actually moving the folders.  (Default: false.)
 
 #### Random Episode
 

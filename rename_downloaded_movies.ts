@@ -30,7 +30,7 @@ function initCommand() {
     )
     .option(
       "-t, --test [interactive:boolean]",
-      "Should logout the dist only without actually moving the folders.",
+      "Should logout the dest only without actually moving the folders.",
       { default: false },
     )
     .parse(Deno.args);
@@ -63,18 +63,18 @@ export async function main({
 
     if (!parsedInfo) continue;
 
-    const { src, dist } = parsedInfo;
+    const { src, dest } = parsedInfo;
 
     if (isTest) {
       console.log(
         `Would move ${colors.blue.underline.bold(src)} to ${
-          colors.brightGreen.underline.bold(dist)
+          colors.brightGreen.underline.bold(dest)
         }`,
       );
       continue;
     }
 
-    await moveFolderRecursively(src, dist);
+    await moveFolderRecursively(src, dest);
   }
 }
 

@@ -1,27 +1,27 @@
 import { colors, path } from "../deps.ts";
 import { getErrorMessage } from "./error.ts";
 
-export async function moveFile(src: string, dist: string): Promise<void> {
+export async function moveFile(src: string, dest: string): Promise<void> {
   try {
-    await Deno.rename(src, dist);
+    await Deno.rename(src, dest);
   } catch (e) {
     const message = getErrorMessage(e);
     console.error(
-      colors.red.bold.white(`Problem moving ${src} to ${dist}.`),
+      colors.red.bold.white(`Problem moving ${src} to ${dest}.`),
     );
     console.error(colors.red.white(`Error message: ${message}`));
   }
 }
 
-export async function moveFolderRecursively(src: string, dist: string) {
-  await Deno.mkdir(dist, { recursive: true });
+export async function moveFolderRecursively(src: string, dest: string) {
+  await Deno.mkdir(dest, { recursive: true });
 
   try {
     for await (const f of Deno.readDir(src)) {
       const filename = f.name;
       await Deno.rename(
         path.join(src, filename),
-        path.join(dist, filename),
+        path.join(dest, filename),
       );
     }
     console.log("Moving:", src);
