@@ -1,10 +1,8 @@
 import { path } from "./deps.ts";
 
-import { getHome } from "./utils/mod.ts";
+export const HOME = Deno.env.get("HOME")!;
 
-export const HOME = getHome();
-
-export const moviesRoot = path.join(HOME, "Movies and Series");
+export const moviesRoot = path.join(HOME, "Movies");
 export const downloadsRoot = path.join(HOME, "Downloads");
 
 export const sitcoms = [
