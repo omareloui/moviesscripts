@@ -5,6 +5,9 @@ import { colors, Command } from "./deps.ts";
 import {
   getEps,
   getSeries,
+  lowerCaseToCapitalized,
+  notify,
+  parseSeasonAndEp,
   randomFromArray,
   selectMovieOrSeries,
   startVideo,
@@ -28,6 +31,10 @@ export async function main(seriesName?: string) {
   const eps = getEps(selectedRetrieveInfo);
   const randomEp = randomFromArray(eps);
 
+  await notify(
+    `Starting ${lowerCaseToCapitalized(selectedRetrieveInfo.name)}`,
+    parseSeasonAndEp(randomEp.name).text,
+  );
   console.log(`\nStarting ${colors.blue(randomEp.name)}.\n`);
   await startVideo(randomEp.path);
 }

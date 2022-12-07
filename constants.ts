@@ -40,6 +40,7 @@ export const MOVIES_FOLDER_REGEX =
   /^(T|W) (M[VSA]|S[ESA]) ((?:19|20)\d{2})-?((?:19|20)\d{2})? (.+)$/;
 
 export const YEAR_REGEX = /\b(20|19)\d{2}\b/;
-export const SEASON_EP_REGEX = /\b(s\d{2})(e\d{2})\b/i;
-export const SEASON_REGEX = /\b(?:season|s)(?: |\.|_|-)?(\d{1,2})\b/i;
-export const NO_EP_REGEX = /^(?!.+\b(ep|episode)\d{1,2}\b)/i;
+export const SEASON_EP_REGEX = /(?:\b|_)(s\d{2})(e\d{2})(?:\b|_)/i;
+export const SEASON_REGEX =
+  /(?:\b|_)(?:season|s)(?: |\.|_|-)?(\d{1,2})(?:\b|_)/i;
+export const NO_EP_REGEX = /^(?!.+(?:\b|_)(ep|episode)\d{1,2}(?:\b|_))/i;

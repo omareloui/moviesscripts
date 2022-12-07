@@ -5,6 +5,8 @@ import { sitcoms } from "./config.ts";
 import {
   getEps,
   getSeries,
+  notify,
+  parseSeasonAndEp,
   randomFromArray,
   selectMovieOrSeries,
   startVideo,
@@ -24,6 +26,11 @@ export async function main() {
 
   const randomEp = randomFromArray(eps);
 
+  console.log(randomEp);
+  await notify(
+    `Starting ${randomEp.name}`,
+    parseSeasonAndEp(randomEp.name).text,
+  );
   console.log(`\nStarting ${colors.blue(randomEp.name)}.\n`);
 
   await startVideo(randomEp.path);
