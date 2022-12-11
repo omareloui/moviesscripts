@@ -1,0 +1,14 @@
+{
+  "movies": [],
+  "moviesSaga": [
+    {
+      "dest": "/home/omareloui/Movies/W MS 2001-2011 Harry Potter",
+      "name": "Harry Potter",
+      "fullName": "W MS 2001-2011 Harry Potter"
+    }
+  ],
+  "animatedMovies": [],
+  "series": [],
+  "shortSeries": [],
+  "animatedSeries": []
+}
