@@ -10,7 +10,7 @@ const grouped: {
   [
     K in
       | "movies"
-      | "moviesSaga"
+      | "moviesSagas"
       | "animatedMovies"
       | "series"
       | "shortSeries"
@@ -18,7 +18,7 @@ const grouped: {
   ]: (RetrieveInfo & { fullName: string })[];
 } = {
   movies: [],
-  moviesSaga: [],
+  moviesSagas: [],
   animatedMovies: [],
   series: [],
   shortSeries: [],
@@ -45,7 +45,7 @@ moviesAndSeries.forEach((seriesOrMovie) => {
     return add("animatedMovies", { ...seriesOrMovie, fullName });
   }
   if (type === "MS") {
-    return add("moviesSaga", { ...seriesOrMovie, fullName });
+    return add("moviesSagas", { ...seriesOrMovie, fullName });
   }
   if (type === "MV") {
     return add("movies", { ...seriesOrMovie, fullName });
