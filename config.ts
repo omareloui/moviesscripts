@@ -9,4 +9,5 @@ export const sitcoms = [
   "How I Met Your Mother",
   "Friends",
   "The Office",
+  "Brooklyn Nine Nine",
 ];
