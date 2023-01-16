@@ -30,7 +30,7 @@ export async function askForYear(askForEndYear = true) {
       name: "hasEnded",
       message: "Do you know when it ended?",
       type: Confirm,
-      default: true,
+      default: false,
       after: async ({ hasEnded }, next) => {
         if (!hasEnded) return;
         await next();
