@@ -25,7 +25,7 @@
         ];
       };
     in {
-      packages.executable = deno2nix.mkExecutable {
+      packages.moviesscripts = deno2nix.mkExecutable {
         pname = "moviesscripts";
         version = "1.0.0";
 
