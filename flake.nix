@@ -26,7 +26,7 @@
       };
     in {
       packages.executable = deno2nix.mkExecutable {
-        pname = "moviesscripts";
+        pname = "movies-scripts";
         version = "1.0.0";
 
         src = ./.;
