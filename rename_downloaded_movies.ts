@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run --allow-env --allow-read --allow-write --unstable
+#!/usr/bin/env -S deno run --allow-env --allow-read --allow-write
 
 import { colors, Command } from "./deps.ts";
 
@@ -13,11 +13,9 @@ function initCommand() {
       "A cli tool to rename series and movies folders to my personal system.",
     )
     .version("1.0.0")
-    .option(
-      "-r, --root [root:file]",
-      "The root folder for the movies.",
-      { default: downloadsRoot },
-    )
+    .option("-r, --root [root:file]", "The root folder for the movies.", {
+      default: downloadsRoot,
+    })
     .option(
       "-i, --interactive [interactive:boolean]",
       "Should be interactive or not.",
@@ -49,9 +47,7 @@ export async function main({
 }) {
   const rootDir = typeof root === "string" ? root : downloadsRoot;
 
-  for await (
-    const dirOrFile of Deno.readDir(rootDir)
-  ) {
+  for await (const dirOrFile of Deno.readDir(rootDir)) {
     if (!dirOrFile.isDirectory) continue;
 
     const parsedInfo = await parseDownloadFolderInfo(dirOrFile.name, {
@@ -67,9 +63,9 @@ export async function main({
 
     if (isTest) {
       console.log(
-        `Would move ${colors.blue.underline.bold(src)} to ${
-          colors.brightGreen.underline.bold(dest)
-        }`,
+        `Would move ${colors.blue.underline.bold(
+          src,
+        )} to ${colors.brightGreen.underline.bold(dest)}`,
       );
       continue;
     }

@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run --allow-env --allow-read --allow-run --unstable
+#!/usr/bin/env -S deno run --allow-env --allow-read --allow-run
 
 import { Command, EnumType, Select } from "./deps.ts";
 import { main as renameDownloadMovies } from "./rename_downloaded_movies.ts";

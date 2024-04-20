@@ -7,8 +7,9 @@ import { SEASON_REGEX } from "./constants.ts";
 async function main() {
   const series = getSeries();
   const requiredSeriesFolder = await selectMovieOrSeries(series);
-  const seasonsFolders = [...Deno.readDirSync(requiredSeriesFolder.dest)]
-    .filter((x) => x.isDirectory);
+  const seasonsFolders = [
+    ...Deno.readDirSync(requiredSeriesFolder.dest),
+  ].filter((x) => x.isDirectory);
 
   for (const season of seasonsFolders) {
     const seasonMatch = season.name.match(SEASON_REGEX);
