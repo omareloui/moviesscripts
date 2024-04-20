@@ -2,7 +2,7 @@
   description = "A flake for my movies scripts.";
 
   inputs = {
-    nixpkgs.url = "github.com:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
     deno2nix.url = "github:SnO2WMaN/deno2nix";
