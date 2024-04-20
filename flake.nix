@@ -24,8 +24,8 @@
           deno2nix.overlays.default
         ];
       };
-    in {
-      packages.moviesscripts = deno2nix.mkExecutable {
+
+      moviesscripts = deno2nix.mkExecutable {
         pname = "moviesscripts";
         version = "1.0.0";
 
@@ -42,5 +42,8 @@
           run = true;
         };
       };
+    in {
+      packages.default = moviesscripts;
+      packages.moviesscripts = moviesscripts;
     });
 }
