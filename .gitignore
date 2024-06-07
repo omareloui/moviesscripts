@@ -1,1 +1,4 @@
-movies_and_series.json
+bin
+
+.env*
+!.env.example
