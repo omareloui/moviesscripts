@@ -53,11 +53,18 @@ func (p *Parser) Parse(filename string) *LibraryEntry {
 			log.Panicln("err parsing the season after it matched")
 		}
 		libEntry.Season = uint8(s)
-		ep, err := strconv.ParseUint(epMatch[3], 10, 32)
+		ep, err := strconv.ParseUint(epMatch[3], 10, 16)
 		if err != nil {
 			log.Panicln("err parsing the episode after it matched")
 		}
-		libEntry.EP = uint16(ep)
+		libEntry.EPs = []uint16{uint16(ep)}
+		if epMatch[4] != "" {
+			ep, err = strconv.ParseUint(epMatch[4], 10, 16)
+			if err != nil {
+				log.Panicln("err parsing the episode after it matched")
+			}
+			libEntry.EPs = append(libEntry.EPs, uint16(ep))
+		}
 	} else if isMovie {
 		libEntry.Kind = KindMovie
 
@@ -97,5 +104,9 @@ func (p *Parser) Parse(filename string) *LibraryEntry {
 }
 
 func (p *Parser) conformTitle(t string) string {
-	return strings.Trim(ToReplaceRe.ReplaceAllString(t, " "), " ")
+	t = strings.Trim(ToReplaceRe.ReplaceAllString(t, " "), " ")
+	t = BoundariesRe.ReplaceAllStringFunc(t, func(s string) string {
+		return strings.ToUpper(s)
+	})
+	return t
 }

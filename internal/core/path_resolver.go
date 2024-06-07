@@ -45,7 +45,7 @@ func (r *PathResolver) ResolveRelativeDir(en *LibraryEntry) string {
 	switch en.Kind {
 	case KindMovie:
 	case KindShow:
-		if en.Season == 0 || en.EP == 0 {
+		if en.Season == 0 || len(en.EPs) == 0 || en.EPs[0] == 0 {
 			log.Panicln("invalid season or ep number")
 		}
 
@@ -79,12 +79,15 @@ func (r *PathResolver) ResolveFileName(en *LibraryEntry) string {
 		}
 
 	case KindShow:
-		if en.Season == 0 || en.EP == 0 {
+		if en.Season == 0 || len(en.EPs) == 0 || en.EPs[0] == 0 {
 			log.Panicln("invalid season or ep number")
 		}
 
 		fmt.Fprintf(builder, " S%02d", en.Season)
-		fmt.Fprintf(builder, "E%02d", en.EP)
+		fmt.Fprintf(builder, "E%02d", en.EPs[0])
+		if len(en.EPs) > 1 {
+			fmt.Fprintf(builder, "-E%02d", en.EPs[1])
+		}
 
 	default:
 		log.Panicln("invalid kind on resolving filename")

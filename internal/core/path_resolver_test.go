@@ -48,7 +48,7 @@ func TestPathResolver(t *testing.T) {
 				ReleaseDate: 2015,
 				Resolution:  core.Resolution1080,
 				Season:      2,
-				EP:          10,
+				EPs:         []uint16{10},
 				IMDBID:      "tt3032476",
 			}
 
@@ -56,6 +56,13 @@ func TestPathResolver(t *testing.T) {
 				en1 := en
 				p := resolver.ResolveFileName(&en1)
 				assert.Equal(t, "Better Call Saul S02E10.mkv", p)
+			})
+
+			t.Run("with two eps", func(t *testing.T) {
+				en1 := en
+				en1.EPs = []uint16{10, 11}
+				p := resolver.ResolveFileName(&en1)
+				assert.Equal(t, "Better Call Saul S02E10-E11.mkv", p)
 			})
 
 			t.Run("panics without season", func(t *testing.T) {
@@ -68,7 +75,7 @@ func TestPathResolver(t *testing.T) {
 
 			t.Run("panics without episode", func(t *testing.T) {
 				en1 := en
-				en1.EP = 0
+				en1.EPs[0] = 0
 				assert.Panics(t, func() {
 					resolver.ResolveFileName(&en1)
 				})
@@ -89,7 +96,7 @@ func TestPathResolver(t *testing.T) {
 
 			t.Run("with imdb", func(t *testing.T) {
 				d := resolver.ResolveRelativeDir(&en)
-				assert.Equal(t, "Luca (2019) [imdbid-tt12801262]", d)
+				assert.Equal(t, "movies/Luca (2019) [imdbid-tt12801262]", d)
 			})
 		})
 
@@ -101,13 +108,13 @@ func TestPathResolver(t *testing.T) {
 				ReleaseDate: 2015,
 				Resolution:  core.Resolution1080,
 				Season:      2,
-				EP:          10,
+				EPs:         []uint16{10},
 				IMDBID:      "tt3032476",
 			}
 
 			t.Run("with everything", func(t *testing.T) {
 				d := resolver.ResolveRelativeDir(&en)
-				assert.Equal(t, "Better Call Saul (2015) [imdbid-tt3032476]/Season 02", d)
+				assert.Equal(t, "shows/Better Call Saul (2015) [imdbid-tt3032476]/Season 02", d)
 			})
 		})
 	})

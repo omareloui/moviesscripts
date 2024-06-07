@@ -15,6 +15,7 @@ func TestParser(t *testing.T) {
 		ep2 := "Chainsaw Man S01E01 2022 1080p WEBRip Dual Audio AAC H.265-Hodl.mkv"
 		ep3 := "Chainsaw Man S01E02 2022 1080p WEBRip Dual Audio AAC H.265-Hodl.mkv"
 		ep4 := "Chainsaw Man S01E11 2022 1080p WEBRip Dual Audio AAC H.265-Hodl.mkv"
+		ep5 := "friends.s09e23e24.720p.bluray.x264-mrs.sujaidr.mkv"
 
 		eps := []string{ep1, ep2, ep3, ep4}
 
@@ -34,6 +35,8 @@ func TestParser(t *testing.T) {
 			assert.Equal(t, "Chainsaw Man", en.Title)
 			en = parser.Parse(ep4)
 			assert.Equal(t, "Chainsaw Man", en.Title)
+			en = parser.Parse(ep5)
+			assert.Equal(t, "Friends", en.Title)
 		})
 
 		t.Run("parse season", func(t *testing.T) {
@@ -45,17 +48,22 @@ func TestParser(t *testing.T) {
 			assert.Equal(t, uint8(1), en.Season)
 			en = parser.Parse(ep4)
 			assert.Equal(t, uint8(1), en.Season)
+			en = parser.Parse(ep5)
+			assert.Equal(t, uint8(9), en.Season)
 		})
 
 		t.Run("parse episode", func(t *testing.T) {
 			en := parser.Parse(ep1)
-			assert.Equal(t, uint16(2), en.EP)
+			assert.Equal(t, uint16(2), en.EPs[0])
 			en = parser.Parse(ep2)
-			assert.Equal(t, uint16(1), en.EP)
+			assert.Equal(t, uint16(1), en.EPs[0])
 			en = parser.Parse(ep3)
-			assert.Equal(t, uint16(2), en.EP)
+			assert.Equal(t, uint16(2), en.EPs[0])
 			en = parser.Parse(ep4)
-			assert.Equal(t, uint16(11), en.EP)
+			assert.Equal(t, uint16(11), en.EPs[0])
+			en = parser.Parse(ep5)
+			assert.Equal(t, uint16(23), en.EPs[0])
+			assert.Equal(t, uint16(24), en.EPs[1])
 		})
 
 		t.Run("parse resolution", func(t *testing.T) {
@@ -67,6 +75,8 @@ func TestParser(t *testing.T) {
 			assert.Equal(t, core.Resolution1080, en.Resolution)
 			en = parser.Parse(ep4)
 			assert.Equal(t, core.Resolution1080, en.Resolution)
+			en = parser.Parse(ep5)
+			assert.Equal(t, core.Resolution720, en.Resolution)
 		})
 
 		t.Run("parse extension", func(t *testing.T) {

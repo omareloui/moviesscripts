@@ -18,10 +18,12 @@ var (
 
 	ToReplaceRe *regexp.Regexp = regexp.MustCompile(`[(._\-]`)
 
-	EpRe    *regexp.Regexp = regexp.MustCompile(fmt.Sprintf(`^(.+)%s[Ss](%s)[Ee](%s)%s`, sep, number, number, sep))
+	EpRe    *regexp.Regexp = regexp.MustCompile(fmt.Sprintf(`^(.+)%s[Ss](%s)[Ee](%s)(?:%s?[Ee](%s))?%s`, sep, number, number, sep, number, sep))
 	MovieRe *regexp.Regexp = regexp.MustCompile(fmt.Sprintf(`^(.+)%s((?:20|19)\d{2})%s`, sep, sep))
 
 	VidExtRe    *regexp.Regexp = regexp.MustCompile(fmt.Sprintf(`\.(%s)$`, strings.Join(ExtensionsVideos[:], "|")))
 	KeepExtRe   *regexp.Regexp = regexp.MustCompile(fmt.Sprintf(`\.(%s)$`, strings.Join(ExtensionsKeep[:], "|")))
 	RemoveExtRe *regexp.Regexp = regexp.MustCompile(fmt.Sprintf(`\.(%s)$`, strings.Join(ExtensionsRemove[:], "|")))
+
+	BoundariesRe *regexp.Regexp = regexp.MustCompile(`(?:\b|\s|\t|\.|-|_)\w`)
 )
