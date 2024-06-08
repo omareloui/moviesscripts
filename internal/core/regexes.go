@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	sep    = `(?:\b|\s|_)`
+	sep    = `(?:\b|\s|_|\+)`
 	number = `\d{1,3}`
 )
 

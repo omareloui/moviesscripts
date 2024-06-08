@@ -23,6 +23,8 @@ var ExtensionsRemove = [...]string{
 	"jpg",
 	"webp",
 	"zip",
+	"ico",
+	"nfo",
 }
 
 var ExtensionsKeep = [...]string{
